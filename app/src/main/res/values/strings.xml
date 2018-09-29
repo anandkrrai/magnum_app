@@ -1,4 +1,17 @@
 <resources>
     <string name="app_name">Magnum_chat_app</string>
-    <string name="start_a_new_issue">Start a new Issue</string>
+    <string name="name">Name </string>
+    <string name="search_here">Search here</string>
+    <string name="speak_button_description">This is the description for speak button</string>
+    <string name="content_picker_description">this is content picker button</string>
+    <string name="item_message_content">imave for message</string>
+    <string name="notice">Notice</string>
+    <string name="enter_the_name_of_the_issue">enter the name of the issue</string>
+    <string name="warning_new_issue">You can not undo this action. Everyone can see that you started this discussion</string>
+    <string name="new_discussion">new Discussion</string>
+    <string name="start_issue">start issue</string>
+    <string name="send_button_label">Send</string>
+    <string name="start_a_new_issue">Start A NEw Issue</string>
+
+
 </resources>
