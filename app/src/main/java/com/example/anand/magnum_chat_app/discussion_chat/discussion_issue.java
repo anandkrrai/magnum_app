@@ -1,6 +1,7 @@
 package com.example.anand.magnum_chat_app.discussion_chat;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,8 +12,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import com.example.anand.magnum_chat_app.R;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -50,6 +53,9 @@ public class discussion_issue extends AppCompatActivity {
     private FirebaseAuth mFirebaseAuth;
     private StorageReference mChatPhotosStorageReference;
 
+    RelativeLayout relativeLayoutl;
+
+
     String category;
 
     public discussion_issue() {
@@ -59,6 +65,12 @@ public class discussion_issue extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_discussion_issue);
+
+        relativeLayoutl= findViewById(R.id.rl);
+        AnimationDrawable animationDrawable = (AnimationDrawable)relativeLayoutl.getBackground();
+        animationDrawable.setEnterFadeDuration(2000);
+        animationDrawable.setExitFadeDuration(2000);
+        animationDrawable.start();
 
 
         final Bundle bundle = getIntent().getExtras();

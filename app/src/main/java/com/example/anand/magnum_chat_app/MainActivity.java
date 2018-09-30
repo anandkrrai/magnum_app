@@ -2,6 +2,7 @@ package com.example.anand.magnum_chat_app;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -34,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     FirebaseUser user;
     public static final int RC_SIGN_IN = 1;
-
+LinearLayout ll;
 
     ListView listview;
     DatabaseReference databaseReference;
@@ -48,7 +50,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Utils.getDatabase();
 
-
+        ll= findViewById(R.id.llMain);
+        AnimationDrawable animationDrawable = (AnimationDrawable)ll.getBackground();
+        animationDrawable.setEnterFadeDuration(2000);
+        animationDrawable.setExitFadeDuration(2000);
+        animationDrawable.start();
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 

@@ -11,6 +11,11 @@
         android:color="#FFFFFF"
         android:width="2dp" />
 
+    <padding android:right="@dimen/activity_horizontal_margin"
+        android:left="@dimen/activity_horizontal_margin"/>
+
+
+
 
     <!--<size-->
         <!--android:width="165dp"-->
