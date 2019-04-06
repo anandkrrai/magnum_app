@@ -49,6 +49,7 @@ LinearLayout ll;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Utils.getDatabase();
+        //hi
 
         ll= findViewById(R.id.llMain);
         AnimationDrawable animationDrawable = (AnimationDrawable)ll.getBackground();
