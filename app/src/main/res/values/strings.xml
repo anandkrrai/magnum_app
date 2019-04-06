@@ -11,6 +11,7 @@
     <string name="start_issue">Start Discussion</string>
     <string name="send_button_label">Send</string>
     <string name="start_a_new_issue">Start A NEw Discussion</string>
+    <string name="type_a_message">Type a Message</string>
 
 
 </resources>

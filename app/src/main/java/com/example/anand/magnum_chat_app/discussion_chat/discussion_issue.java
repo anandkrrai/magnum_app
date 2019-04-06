@@ -12,11 +12,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-
 import com.example.anand.magnum_chat_app.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,7 +26,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,10 +33,8 @@ public class discussion_issue extends AppCompatActivity {
 
     public static final int DEFAULT_MSG_LENGTH_LIMIT = 1000;
     private static final int RC_PHOTO_PICKER = 2;
-    private ListView mMessageListView;
     private MessageAdapter mMessageAdapter;
     private ProgressBar mProgressBar;
-    private ImageButton mPhotoPickerButton;
     private EditText mMessageEditText;
     private Button mSendButton;
     public static  String mUsername ;
@@ -48,9 +43,8 @@ public class discussion_issue extends AppCompatActivity {
     // Firebase instance variables
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mMessagesDatabaseReference;
-    private FirebaseStorage mFirebaseStorage;
+    protected FirebaseStorage mFirebaseStorage;
     private ChildEventListener mChildEventListener;
-    private FirebaseAuth mFirebaseAuth;
     private StorageReference mChatPhotosStorageReference;
 
     RelativeLayout relativeLayoutl;
@@ -74,13 +68,14 @@ public class discussion_issue extends AppCompatActivity {
 
 
         final Bundle bundle = getIntent().getExtras();
+        assert bundle != null;
         category=bundle.getString("category");
 
-        mFirebaseAuth = FirebaseAuth.getInstance();
+        FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
 
 
         if(mFirebaseAuth.getCurrentUser()!=null)
-            mUsername=mFirebaseAuth.getCurrentUser().getPhoneNumber();
+            mUsername= mFirebaseAuth.getCurrentUser().getPhoneNumber();
 
         // Initialize Firebase components
         mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -90,8 +85,8 @@ public class discussion_issue extends AppCompatActivity {
         mChatPhotosStorageReference = mFirebaseStorage.getReference().child("chat_photos");
         // Initialize references to views
         mProgressBar = findViewById(R.id.progressBar);
-        mMessageListView =  findViewById(R.id.messageListView);
-        mPhotoPickerButton = findViewById(R.id.photoPickerButton);
+        ListView mMessageListView = findViewById(R.id.messageListView);
+        ImageButton mPhotoPickerButton = findViewById(R.id.photoPickerButton);
         mMessageEditText =findViewById(R.id.messageEditText);
         mSendButton =findViewById(R.id.sendButton);
 

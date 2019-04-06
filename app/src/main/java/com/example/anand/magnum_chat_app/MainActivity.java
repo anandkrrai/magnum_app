@@ -1,5 +1,6 @@
 package com.example.anand.magnum_chat_app;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 import com.example.anand.magnum_chat_app.Utils.Utils;
 import com.example.anand.magnum_chat_app.Utils.stringManipulation;
 import com.example.anand.magnum_chat_app.discussion_chat.discussion_issue;
+import com.example.anand.magnum_chat_app.discussion_chat.generateContactList;
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,8 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     FirebaseUser user;
     public static final int RC_SIGN_IN = 1;
-LinearLayout ll;
-
+    LinearLayout ll;
     ListView listview;
     DatabaseReference databaseReference;
     String[]  issues_list;
@@ -49,13 +50,13 @@ LinearLayout ll;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Utils.getDatabase();
-        //hi
 
         ll= findViewById(R.id.llMain);
         AnimationDrawable animationDrawable = (AnimationDrawable)ll.getBackground();
         animationDrawable.setEnterFadeDuration(2000);
         animationDrawable.setExitFadeDuration(2000);
         animationDrawable.start();
+
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 
@@ -148,7 +149,7 @@ LinearLayout ll;
     private void show_dialog() {
 
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
-        View mView = getLayoutInflater().inflate(R.layout.dialog_new_discussion,null);
+        @SuppressLint("InflateParams") View mView = getLayoutInflater().inflate(R.layout.dialog_new_discussion,null);
         final EditText name_of_issue= mView.findViewById(R.id.new_issue_heading);
         Button submit = mView.findViewById(R.id.start_issue);
 
@@ -189,11 +190,7 @@ LinearLayout ll;
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                if (name!=null&&!dataSnapshot.hasChild(name)) {
-                    rv[0] =true;
-                }else{
-                    rv[0]=false;
-                }
+                rv[0] = name != null && !dataSnapshot.hasChild(name);
             }
 
             @Override
@@ -209,13 +206,14 @@ LinearLayout ll;
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                issues_list = new String[(int)dataSnapshot.getChildrenCount()];
-                int i=0;
-
-                for(DataSnapshot data : dataSnapshot.getChildren()){
-                    issues_list[i]=stringManipulation.expand(data.getKey());
-                    ++i;
-                }
+//                issues_list = new String[(int)dataSnapshot.getChildrenCount()];
+//                int i=0;
+//
+//                for(DataSnapshot data : dataSnapshot.getChildren()){
+//                    issues_list[i]=stringManipulation.expand(data.getKey());
+//                    ++i;
+//                }
+                    issues_list= generateContactList.getList();
 
                 listview.setAdapter(new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, issues_list));
             }
@@ -226,5 +224,28 @@ LinearLayout ll;
             }
         });
     }
+
+//    public void populate_list(){
+//
+//        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                issues_list = new String[(int)dataSnapshot.getChildrenCount()];
+//                int i=0;
+//
+//                for(DataSnapshot data : dataSnapshot.getChildren()){
+//                    issues_list[i]=stringManipulation.expand(data.getKey());
+//                    ++i;
+//                }
+//
+//                listview.setAdapter(new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, issues_list));
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
+//    }
 }
 

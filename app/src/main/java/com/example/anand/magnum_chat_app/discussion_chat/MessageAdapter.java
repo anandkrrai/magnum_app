@@ -2,6 +2,7 @@ package com.example.anand.magnum_chat_app.discussion_chat;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -17,18 +18,20 @@ public class MessageAdapter extends ArrayAdapter<FriendlyMessage> {
         super(context, resource, objects);
     }
 
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         if (convertView == null) {
             convertView = ((Activity) getContext()).getLayoutInflater().inflate(R.layout.item_message, parent, false);
         }
 
-        ImageView photoImageView = (ImageView) convertView.findViewById(R.id.photoImageView);
-        TextView messageTextView = (TextView) convertView.findViewById(R.id.messageTextView);
-        TextView authorTextView = (TextView) convertView.findViewById(R.id.nameTextView);
+        ImageView photoImageView =  convertView.findViewById(R.id.photoImageView);
+        TextView messageTextView =  convertView.findViewById(R.id.messageTextView);
+        TextView authorTextView =   convertView.findViewById(R.id.nameTextView);
 
         FriendlyMessage message = getItem(position);
 
+        assert message != null;
         boolean isPhoto = message.getPhotoUrl() != null;
         if (isPhoto) {
             messageTextView.setVisibility(View.GONE);

@@ -51,7 +51,7 @@
             android:layout_gravity="bottom"
             android:background="@drawable/spotify_button"
             android:enabled="false"
-            android:hint="Type a Message"
+            android:hint="@string/type_a_message"
             android:text="@string/send_button_label"
             android:textColor="#fff"
             android:textColorHighlight="#fff"
