@@ -1,52 +1,41 @@
 {
   "project_info": {
-    "project_number": "975005178396",
-    "firebase_url": "https://magnumchatapp-f5e28.firebaseio.com",
-    "project_id": "magnumchatapp-f5e28",
-    "storage_bucket": "magnumchatapp-f5e28.appspot.com"
+    "project_number": "613050827833",
+    "firebase_url": "https://magnumapp-ec6b2.firebaseio.com",
+    "project_id": "magnumapp-ec6b2",
+    "storage_bucket": "magnumapp-ec6b2.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:975005178396:android:9101b2dbdff968d8",
+        "mobilesdk_app_id": "1:613050827833:android:9101b2dbdff968d8",
         "android_client_info": {
           "package_name": "com.example.anand.magnum_chat_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "975005178396-mgachcugg0633ijnki0rku2o5a39i22a.apps.googleusercontent.com",
+          "client_id": "613050827833-odisjj623vnb3mnmainehfrhsma576dk.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.anand.magnum_chat_app",
-            "certificate_hash": "cb6aada98a13f7e7b9aab39b872fbeffae9ac622"
+            "certificate_hash": "03e5bcd035232b7b849662f0150d64acd1bd6bbf"
           }
-        },
-        {
-          "client_id": "975005178396-g7nde901h0daecms45mmg2rhsks5iqis.apps.googleusercontent.com",
-          "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD-oMeK6ORqt7qABMbSg4lzhgeff55aolE"
+          "current_key": "AIzaSyA9SWO91sF1cRHW8XqxHrMCc7PY4nbB6yY"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "975005178396-g7nde901h0daecms45mmg2rhsks5iqis.apps.googleusercontent.com",
+              "client_id": "613050827833-ntrakc37sjt963o70egotjvbpu07g5gm.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
-        },
-        "ads_service": {
-          "status": 2
         }
       }
     }
