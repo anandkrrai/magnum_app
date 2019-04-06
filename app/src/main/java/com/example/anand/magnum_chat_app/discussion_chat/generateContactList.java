@@ -6,50 +6,48 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 
 public  class generateContactList {
-    public static String[] arr=null;
-private static final  String CONTACTLIST="contactList";
-    public static String[] getList(){
+    private static String[][] arr=null;
+    private static final  String CONTACTLIST="contactList";
 
+
+    public static String[][] getList(){
 
         FirebaseDatabase.getInstance().getReference().child(CONTACTLIST).child(getID())
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        HashSet<String> set = new HashSet<>();
+                        HashMap<String,String> map = new HashMap<String,String>();
 
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                            String str = snapshot.getKey();
                             Log.i("debug", str);
                             if(str.compareTo(getID()) < 0){
-                                set.add(getID()+"_"+str);
+                                map.put(getID()+"_"+str,getName(str));
                             }else{
-                                set.add(str+"_"+getID());
-                            }
-                            if(set.contains(str)){
-                                Log.i("contains", str);
-
+                                map.put(str+"_"+getID(),getName(str));
                             }
                         }
-                       duplicateData(set);
+                        ArrayList<String> list = new ArrayList<>(map.keySet());
+                        arr=new String[2][list.size()];
+
+                        for(int i=0;i<list.size();++i){
+                            arr[0][i]=list.get(i);
+                            arr[1][i]=map.get(arr[0][i]);
+                        }
                     }
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
                     }
                 });
 
-        //if size ==0 , display no chats
-//        ArrayList<String> list = new ArrayList<>(set.);
-//        String[] arr =new String[set.size()];
-//        int i=0;
-//        for(String str:set){
-//            arr[i]=str;
-//            ++i;
-//        }
         if(arr==null){
-            arr= new String[0];
+            arr= new String[2][0];
             return arr ;
         }else{
             return arr;
@@ -58,16 +56,11 @@ private static final  String CONTACTLIST="contactList";
 
     }
 
-    private static void duplicateData(HashSet<String> set){
+    public static  String getName(String id){
 
-        arr =new String[set.size()];
-        int i=0;
-        for(String str:set){
-            arr[i]=str;
-            ++i;
-        }
+        //return the name of the person corresponding the given id
+        return id;
     }
-
 
     private static String getID(){
         //dont call api here , this is getting called multiple times

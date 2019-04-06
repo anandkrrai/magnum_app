@@ -41,7 +41,9 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout ll;
     ListView listview;
     DatabaseReference databaseReference;
-    String[]  issues_list;
+    String[][]  chat_list;
+    //chat_list[0]->contains id for firebase
+    //chat_list[1]->contains names for displaying in chat window
     Button start_issue;
     SwipeRefreshLayout pullToRefresh;
 
@@ -94,7 +96,8 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent();
                 intent.setClass(getApplicationContext(),discussion_issue.class);
-                intent.putExtra("category",stringManipulation.compress(issues_list[position]));
+                intent.putExtra("category",stringManipulation.compress(chat_list[0][position]));
+                intent.putExtra("NAME",chat_list[1][position]);
                 startActivity(intent);
             }
         });
@@ -213,9 +216,16 @@ public class MainActivity extends AppCompatActivity {
 //                    issues_list[i]=stringManipulation.expand(data.getKey());
 //                    ++i;
 //                }
-                    issues_list= generateContactList.getList();
 
-                listview.setAdapter(new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, issues_list));
+                    //not much overhead....maxtomax a person will chat with 50 people
+                    chat_list= generateContactList.getList();
+                    String[] names_list = new String[chat_list[1].length];
+                    for(int i=0;i<names_list.length;++i){
+                        names_list[i]=chat_list[1][i];
+                    }
+
+
+                    listview.setAdapter(new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, names_list));
             }
 
             @Override
