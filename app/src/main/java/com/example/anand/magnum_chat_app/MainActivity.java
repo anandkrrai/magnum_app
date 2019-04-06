@@ -20,7 +20,7 @@ import android.widget.Toast;
 import com.example.anand.magnum_chat_app.Utils.Utils;
 import com.example.anand.magnum_chat_app.Utils.stringManipulation;
 import com.example.anand.magnum_chat_app.discussion_chat.discussion_issue;
-import com.example.anand.magnum_chat_app.discussion_chat.generateContactList;
+import com.example.anand.magnum_chat_app.discussion_chat.ChatUtility;
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,6 +31,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Collections;
+
+import static com.example.anand.magnum_chat_app.discussion_chat.ChatUtility.initiateNewChat;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -205,7 +207,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void populate_list(){
-
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -218,7 +219,7 @@ public class MainActivity extends AppCompatActivity {
 //                }
 
                     //not much overhead....maxtomax a person will chat with 50 people
-                    chat_list= generateContactList.getList();
+                    chat_list= ChatUtility.getList();
                     String[] names_list = new String[chat_list[1].length];
                     for(int i=0;i<names_list.length;++i){
                         names_list[i]=chat_list[1][i];
