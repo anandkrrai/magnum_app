@@ -210,13 +210,6 @@ public class MainActivity extends AppCompatActivity {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-//                issues_list = new String[(int)dataSnapshot.getChildrenCount()];
-//                int i=0;
-//
-//                for(DataSnapshot data : dataSnapshot.getChildren()){
-//                    issues_list[i]=stringManipulation.expand(data.getKey());
-//                    ++i;
-//                }
 
                     //not much overhead....maxtomax a person will chat with 50 people
                     chat_list= ChatUtility.getList();
