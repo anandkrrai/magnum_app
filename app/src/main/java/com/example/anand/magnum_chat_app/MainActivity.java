@@ -32,8 +32,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Collections;
 
-import static com.example.anand.magnum_chat_app.discussion_chat.ChatUtility.initiateNewChat;
-
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mFirebaseAuth;
@@ -228,28 +226,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-//    public void populate_list(){
-//
-//        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                issues_list = new String[(int)dataSnapshot.getChildrenCount()];
-//                int i=0;
-//
-//                for(DataSnapshot data : dataSnapshot.getChildren()){
-//                    issues_list[i]=stringManipulation.expand(data.getKey());
-//                    ++i;
-//                }
-//
-//                listview.setAdapter(new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, issues_list));
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
-//    }
 }
 

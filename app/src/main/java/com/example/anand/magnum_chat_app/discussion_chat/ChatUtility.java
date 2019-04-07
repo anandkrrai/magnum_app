@@ -2,13 +2,11 @@ package com.example.anand.magnum_chat_app.discussion_chat;
 
 import android.util.Log;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -73,9 +71,15 @@ public  class ChatUtility {
         // Initialize Firebase components
         FirebaseDatabase   mFirebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference usersRef = mFirebaseDatabase.getReference().child(CONTACTLIST);
-        usersRef.child(id1).child(id2).setValue(new contactListModel("yes"));
-        usersRef.child(id2).child(id1).setValue(new contactListModel("yes"));
+        usersRef.child(id1).child(id2).setValue(new contactListModel("no"));
+        usersRef.child(id2).child(id1).setValue(new contactListModel("no"));
+    }
 
-
+    public static void markMsgRead(String sender_id,String recipiend_id){
+        // Initialize Firebase components
+        FirebaseDatabase   mFirebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference usersRef = mFirebaseDatabase.getReference().child(CONTACTLIST);
+        //recipient ne read kiya sender ka msg
+        usersRef.child(recipiend_id).child(sender_id).setValue(new contactListModel("yes"));
     }
 }
